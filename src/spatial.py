@@ -3,9 +3,10 @@ from shapely.geometry import shape as ShapelyShape
 class SpatialObject:
     def __init__(self, geometry_data):
         self.geometry = ShapelyShape(geometry_data)
-        self.attributes = {}
-        self.attributes["area"] = self.geometry.area
-        
+
+    def area(self):
+        return self.geometry.area                      # Added a method for Scaling                 
+    
     def intersects(self, other):
         return self.geometry.intersects(other.geometry)
 
@@ -36,5 +37,5 @@ class Parcel(SpatialObject):
 
     def __repr__(self):
         return (
-            f"Parcel(p_id={self.p_id}, zone='{self.zone}', is_active={self.is_active})"
+            f"Parcel(p_id={self.p_id}, zone='{self.zone}', is_active={self.is_active}, area={self.area():.2f})"
         )
