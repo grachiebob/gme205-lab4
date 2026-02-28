@@ -44,16 +44,16 @@ def main():
     counts_zone = analysis.count_by_zone(parcels)
     parcels_residential = analysis.intersecting_parcels(parcels, "Residential")
 
-    print("Total Active Area:", active_area)
-    print("Parcels Above Threshold:", len(above_threshold))
+    print("Total Active Area:", f"{active_area:.2f}")
+    print("Parcels Above Threshold:", [p.p_id for p in above_threshold])
     print("Zone Counts:", counts_zone)
-    print("Residential Parcels:", len(parcels_residential))
+    print("Residential Parcels:", [p.p_id for p in parcels_residential])
 
     summary = {
-        "total_active_area": active_area,
-        "parcels_above_threshold": len(above_threshold),
+        "total_active_area": f"{active_area:.2f}",
+        "parcels_above_threshold": [p.p_id for p in above_threshold],
         "zone_counts": counts_zone,
-        "residential_parcels": len(parcels_residential)
+        "residential_parcels": [p.p_id for p in parcels_residential]
     }
 
     if not os.path.exists(OUTPUT_DIR):
