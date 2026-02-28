@@ -1,6 +1,14 @@
 # GmE 205: Laboratory 4 
 ## Structured Programming + Object Systems Integration
 
+### *Description*
+This project integrates structured functions and object oriented design to analyze the land parcel data in JSON records.
+
+### *Dependencies*
+* Python 3.14
+* Visual Studio Code
+* shapely
+
 ### Algorithm for this Project
 1. Start
 2. Load `data/parcels.json`
@@ -93,3 +101,22 @@ BEGIN
 
 END
 ```
+
+### *Reflection*
+1. Sequence appears `run_lab4.py` where it appears to loading error, printing results in `active_area`, as well as loading parcels. Selection is visible in `if parcel.is_active`, which decides what parcel should be included in the total. It is also evident in `if not p:` in `analysis.py`, since it validates whether the parcels are loaded. The statements with `if` lets the system choose which is which. FOr repletion, `for parcel in parcels` in `analysis.py` repeats the same operations to all parcels, such as computing for the area or filtering the parcels by threshold. <br> 
+2. The algorithm planning helps in organizing the design for the solution. If this phase will be removed, most likely the program will be unorganized and complicated, creating `God Functions` or `God Objects`. This phase serves as a systematic guide on how will the program or codes be executed depending on the specified problem.<br>
+3. Spatial behavior lives in `Spatial Object` and `Parcel` classes. The `Spatial Object` class contains the method for intersection (`.intersects()`), which means that it execute a geometry-related operation for calculating or checking objects that might possibly intersect or overlap. <br>
+4. `analysis.py` contains all the structured function because it performs the data processing and analysis for this exercise. On the other hand, `demo.py` is a running script meant for running, testing or displaying the results whether the functions in the `analysis.py` works. These two python files remain separated for clarity purposes.<br>
+5. If all filter logic were inside the `Parcel` class, the code will become overloaded, producing a `God class`. In this case, `Parcel` would mix geometry and analysis rules. The responsibility of this class will be broad enough and harder to maintain when errors arise or change is needed.<br>
+6.  In this design, add a new rule such as "exclude inactive industrial parcels" will be easily, since the responsibilities of `spatial.py` and `analysis.py` are separated. `Parcel` class contains the geometry, while `analysis.py` contains the functions for filtering and computing. With this design, the system can easily adapt new rules quickly and safely, as the rest of the codes will work as before.<br>
+7. Separating structured logic from object behavior prevent `God classes` but just giving the system one responsibility per `.py` file. In `Parcel` class, the responsibility is for geometry purpose, while `analysis.py` is responsible for structured function. With this design, it avoids duplication of tasks and making the code easier to extend without affecting the functionality.<br>
+
+## Author
+Maria Graciella L. Roque  
+Discord:[@grachiebob]
+
+## Acknowledgements
+* GmE 205 Laboratory Exercise 3 Manual
+* [MarkDown](https://www.markdownguide.org/cheat-sheet/)
+
+Edited on VS Code
