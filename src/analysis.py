@@ -4,13 +4,13 @@ def total_active_area(parcels: list) -> float:
     total = 0.0
     for parcel in parcels:
         if parcel.is_active:
-            total = total + parcel.area()       #Modified structure
+            total = total + parcel.area_in_sqm()       #Modified structure
     return total
 
 def parcels_above_threshold(parcels: list, threshold: float) -> list:
     result = []
     for parcel in parcels:
-        if parcel.area() > threshold:           #Modified structure
+        if parcel.area_in_sqm() > threshold:           #Modified structure
             result.append(parcel)
     return result
 

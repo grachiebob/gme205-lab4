@@ -1,4 +1,5 @@
 from shapely.geometry import shape as ShapelyShape
+import math
 
 class SpatialObject:
     def __init__(self, geometry_data):
@@ -39,3 +40,8 @@ class Parcel(SpatialObject):
         return (
             f"Parcel(p_id={self.p_id}, zone='{self.zone}', is_active={self.is_active}, area={self.area():.2f})"
         )
+    
+    def area_in_sqm(self):
+        lon, lat = self.geometry.centroid.x, self.geometry.centroid.y
+        scale = (111000 * math.cos(math.radians(lat))) * 111000
+        return self.geometry.area * scale
